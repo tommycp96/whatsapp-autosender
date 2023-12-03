@@ -1,0 +1,23 @@
+{
+  "name": "whatsapp-autosender",
+  "version": "1.0.0",
+  "description": "A utility library to broadcast a message to user list in one go.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tommycp96/whatsapp-autosender.git"
+  },
+  "author": "Tommy Pang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tommycp96/whatsapp-autosender/issues"
+  },
+  "homepage": "https://github.com/tommycp96/whatsapp-autosender#readme",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1"
+  }
+}
