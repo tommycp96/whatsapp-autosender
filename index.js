@@ -49,19 +49,25 @@ const sendMessage = async (phoneNumber, templateName, invitationName) => {
 
 const sendMessagesSequentially = async (data, templateName) => {
   for (let i = 0; i < data.length; i++) {
+    if (data[i].status !== 'pending') {
+      console.log(`Skipping ${data[i].phoneNumber} as status is not pending`);
+      continue;
+    }
+
     console.log(`Sending message to ${data[i].phoneNumber}`);
     const success = await sendMessage(
       data[i].phoneNumber,
       templateName,
       data[i].invitationName
     );
+
     if (!success) {
       console.log(`Failed to send message to ${data[i].phoneNumber}`);
       break;
-    } else {
-      console.log(`Message successfully sent to ${data[i].phoneNumber}`);
     }
-    await interval(2000);
+
+    console.log(`Message successfully sent to ${data[i].phoneNumber}`);
+    // await interval(2000);
   }
 };
 

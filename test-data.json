@@ -1,4 +1,12 @@
 [
-  { "invitationName": "Sam%20Altman", "phoneNumber": "12345678" },
-  { "invitationName": "Elon%20Musk", "phoneNumber": "98761234" }
+  {
+    "invitationName": "Sam%20Altman",
+    "phoneNumber": "12345678",
+    "status": "sent"
+  },
+  {
+    "invitationName": "Elon%20Musk",
+    "phoneNumber": "98761234",
+    "status": "sent"
+  }
 ]

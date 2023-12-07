@@ -74,3 +74,5 @@ storybook-static
 
 # nyc test coverage
 .nyc_output
+
+data.json
