@@ -11,6 +11,7 @@ This Node.js application automates the process of sending WhatsApp messages usin
 - An `.env` file with the following variables set:
   - `WHATSAPP_BASE_URL`: The base URL for the WhatsApp API.
   - `ACCESS_TOKEN`: Your WhatsApp API access token.
+  - `TEMPLATE_NAME`: Your WhatsApp message template name
 
 ### Installation
 

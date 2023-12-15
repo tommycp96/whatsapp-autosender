@@ -58,7 +58,7 @@ const sendMessage = async (phoneNumber, templateName, invitationName) => {
   modifying the relevant entry in memory, and then writing the entire modified data back to the file.
   This process can be resource-intensive for very large files, but for a moderate number of entries, it should work fine.
 */
-const updateStatusInJson = async (data) => {
+const updateJsonStatus = async (data) => {
   const jsonData = JSON.stringify(data, null, 2);
   await fs.writeFile(filePath, jsonData, 'utf8');
 };
@@ -80,7 +80,7 @@ const sendMessagesSequentially = async (data, templateName) => {
     if (success) {
       console.log(`Message successfully sent to ${data[i].phoneNumber}`);
       data[i].status = 'sent';
-      await updateStatusInJson(data);
+      await updateJsonStatus(data);
     } else {
       console.log(`Failed to send message to ${data[i].phoneNumber}`);
     }
