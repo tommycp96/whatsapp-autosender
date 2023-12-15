@@ -1,6 +1,9 @@
 require('dotenv').config();
+const fs = require('fs').promises;
 const axios = require('axios');
-const data = require('./test-data.json');
+const path = require('path');
+const filePath = path.join(__dirname, 'test-data.json');
+const data = require(filePath);
 const interval = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const sendMessage = async (phoneNumber, templateName, invitationName) => {
@@ -50,6 +53,16 @@ const sendMessage = async (phoneNumber, templateName, invitationName) => {
   }
 };
 
+/*
+  NOTE: Since JSON is a static file format, this involves reading the entire file,
+  modifying the relevant entry in memory, and then writing the entire modified data back to the file.
+  This process can be resource-intensive for very large files, but for a moderate number of entries, it should work fine.
+*/
+const updateStatusInJson = async (data) => {
+  const jsonData = JSON.stringify(data, null, 2);
+  await fs.writeFile(filePath, jsonData, 'utf8');
+};
+
 const sendMessagesSequentially = async (data, templateName) => {
   for (let i = 0; i < data.length; i++) {
     if (data[i].status !== 'pending') {
@@ -64,12 +77,14 @@ const sendMessagesSequentially = async (data, templateName) => {
       data[i].invitationName
     );
 
-    if (!success) {
+    if (success) {
+      console.log(`Message successfully sent to ${data[i].phoneNumber}`);
+      data[i].status = 'sent';
+      await updateStatusInJson(data);
+    } else {
       console.log(`Failed to send message to ${data[i].phoneNumber}`);
-      break;
     }
 
-    console.log(`Message successfully sent to ${data[i].phoneNumber}`);
     // await interval(2000);
   }
 };
