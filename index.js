@@ -39,7 +39,10 @@ const sendMessage = async (phoneNumber, templateName, invitationName) => {
 
   try {
     const response = await axios.post(url, requestData, { headers: headers });
-    console.log(`Message sent to ${phoneNumber}: `, response.data);
+    console.log(
+      `Message sent to ${phoneNumber} - ${decodeURI(invitationName)}: `,
+      response.data
+    );
     return true;
   } catch (error) {
     console.error(`Error sending message to ${phoneNumber}: `, error);
