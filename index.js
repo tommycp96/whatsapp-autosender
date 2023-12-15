@@ -89,7 +89,7 @@ const sendMessagesSequentially = async (data, templateName) => {
   }
 };
 
-const templateName = 'wed_invitation'; // Replace with your actual template name
+const templateName = process.env.TEMPLATE_NAME;
 
 sendMessagesSequentially(data, templateName)
   .then(() => console.log('All messages sent successfully'))
